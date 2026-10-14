@@ -1,5 +1,6 @@
 # Edit image.tag to deploy a new build to the local cluster.
-# The image must already be loaded onto the node (dashr-nova/scripts/build-local.sh).
+# The image must already be loaded onto the node, e.g. on Docker Desktop:
+#   CORP_CA_FILE=<ca.pem> dashr-nova/scripts/build-local.sh <version> docker-desktop
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
