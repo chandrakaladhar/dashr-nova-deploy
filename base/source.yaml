@@ -5,7 +5,7 @@ metadata:
   name: dashr-nova-source
 spec:
   interval: 5m
-  url: https://github.com/YOUR_ORG/dashr-nova   # TODO
+  url: https://github.com/chandrakaladhar/dashr-nova
   ref:
     tag: v0.1.0
   ignore: |
