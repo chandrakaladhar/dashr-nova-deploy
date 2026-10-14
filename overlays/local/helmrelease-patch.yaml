@@ -10,7 +10,7 @@ spec:
     replicaCount: 1
     image:
       repository: registry.local/dashr/dashr-nova
-      tag: "0.1.1"
+      tag: "0.1.2"
       pullPolicy: Never
     env:
       APP_ENV: local
