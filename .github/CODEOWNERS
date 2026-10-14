@@ -1,0 +1,2 @@
+# Production changes need approval from the platform/release owners.
+/overlays/production/   @YOUR_ORG/dashr-release-approvers

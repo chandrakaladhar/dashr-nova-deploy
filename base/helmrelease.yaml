@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dashr-nova
+spec:
+  interval: 10m
+  releaseName: dashr-nova
+  chart:
+    spec:
+      chart: ./charts/dashr-nova
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: dashr-nova-source
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      strategy: rollback
+  # Where dependencies are and which Secret holds credentials: supplied by the
+  # platform (dashr-platform-gitops/tenants/dashr-nova/platform-values.yaml).
+  # Anything under spec.values below overrides it.
+  valuesFrom:
+    - kind: ConfigMap
+      name: dashr-nova-platform-values
+      valuesKey: values.yaml
+  # What to run: owned by this repo.
+  values:
+    image:
+      repository: harbor.example.internal/dashr/dashr-nova
+      tag: ""            # set per environment
+      pullPolicy: IfNotPresent

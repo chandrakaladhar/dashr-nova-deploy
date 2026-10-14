@@ -1,0 +1,15 @@
+# Edit image.tag to deploy a new build to the local cluster.
+# The image must already be loaded onto the node (dashr-nova/scripts/build-local.sh).
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dashr-nova
+spec:
+  values:
+    replicaCount: 1
+    image:
+      repository: registry.local/dashr/dashr-nova
+      tag: "0.1.0"
+      pullPolicy: Never
+    env:
+      APP_ENV: local

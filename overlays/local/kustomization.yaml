@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+patches:
+  - path: helmrelease-patch.yaml
+  # Locally, follow the chart on main so chart edits apply without tagging.
+  - target:
+      kind: GitRepository
+      name: dashr-nova-source
+    patch: |-
+      - op: replace
+        path: /spec/ref
+        value:
+          branch: main
