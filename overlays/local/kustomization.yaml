@@ -13,3 +13,13 @@ patches:
         path: /spec/ref
         value:
           branch: main
+  # Local only: corporate proxy (Zscaler) re-signs TLS for github.com.
+  # Secret corp-ca (key ca.crt) is created by hand in the dashr-nova namespace.
+  - target:
+      kind: GitRepository
+      name: dashr-nova-source
+    patch: |-
+      - op: add
+        path: /spec/secretRef
+        value:
+          name: corp-ca
